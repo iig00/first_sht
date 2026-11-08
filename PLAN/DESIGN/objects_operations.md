@@ -5,6 +5,11 @@
 - IMPLEMENTATIONのI-02「オブジェクトと操作」に関する設計概要。
 - 自機、敵、弾などの状態と、それらを生成・更新する処理を分ける。
 
+## 詳細設計
+
+- [objects/](objects_operations/objects.md)で、オブジェクト定義と個体状態の責務を示す。
+- [operations/](objects_operations/operations.md)で、入力・行動設定から状態更新へ至る流れを示す。
+
 ## 構成要素の責務
 
 | 要素 | 責務 |
