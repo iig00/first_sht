@@ -1,25 +1,56 @@
 # First Shooting
 
-Python標準ライブラリのTkinterで作った小さなシューティングゲームです。
-敵を撃つと10点。敵にぶつかったり、敵が画面の下へ抜けたりするとライフが減り、
-3回でゲームオーバーになります。スコアが増えると難しくなります。
+Pyxelで開発している、固定画面型の2Dシューティングゲームです。
+画面は256×192ピクセルです。
 
-## 起動
+## 現在の状態
 
-Python 3.13以降（Tkinter付き）で、プロジェクトのフォルダから実行します。
+ゲーム実行基盤を作成中です。現在起動できるのは黒い画面だけで、
+自機・敵・攻撃・ステージ進行などのゲーム機能はまだ実装されていません。
+実装項目と進捗は [`PLAN/IMPLEMENTATION.md`](PLAN/IMPLEMENTATION.md) を参照してください。
+
+## 必要なもの
+
+- Python 3.13以降
+- [uv](https://docs.astral.sh/uv/)
+
+## 準備
+
+プロジェクトのルートフォルダーで依存関係を同期します。
 
 ```powershell
-$env:PYTHONPATH = "src"
-python -m first_sht
+uv sync
 ```
 
-uvを使う場合は `uv run first-sht` でも起動できます。
+## PCで起動
 
-## 操作
+```powershell
+uv run python main.py
+```
 
-- 左右キー / A・D：移動
-- スペース：射撃（長押しで連射）
-- R：ゲームオーバー後にリスタート
-- ウィンドウを閉じる：終了
+現状は黒いゲーム画面が開きます。Pyxelの終了操作はEscキーです。
 
-ゲーム本体は `src/first_sht/__init__.py` にあります。
+## HTMLを作成
+
+Pyxelは、アプリのソースを`.pyxapp`にまとめてから、単独で動作するHTMLへ変換できます。
+HTML出力ではアプリのソース一式が必要です。次の例では、`main.py`と`game/`を
+`build/pyxel-app/`へコピーしてから変換します。
+
+```powershell
+New-Item -ItemType Directory -Force build/pyxel-app | Out-Null
+Copy-Item main.py build/pyxel-app/
+Copy-Item game build/pyxel-app/ -Recurse
+uv run pyxel package build/pyxel-app main.py
+```
+
+`pyxel package`が出力した`.pyxapp`のパスを指定してHTMLに変換します。
+
+```powershell
+uv run pyxel app2html <生成された.pyxappのパス>
+```
+
+`<生成された.pyxappのパス>`は、実際に出力されたファイルのパスに置き換えてください。
+生成されたHTMLはサーバーなしで実行できます。
+
+詳しくは[Pyxel公式ガイド](https://github.com/kitao/pyxel/blob/main/docs/user-guide.md)と
+[Pyxel Webガイド](https://github.com/kitao/pyxel/wiki/How-To-Use-Pyxel-Web/3c7ccc624e95584ecc1c9696628cafca91bff7df)を参照してください。

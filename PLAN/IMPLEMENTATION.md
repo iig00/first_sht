@@ -1,21 +1,22 @@
-[_]PLAN整合性チェック
+[✓]PLAN整合性チェック
 
 完了
-
-実装中
 
 - ID: I-01 TITLE: ゲーム実行基盤
   - PLAN <
     - [完了] SPEC詳細
     - [完了] DESIGN詳細
   - IMPLEMENT <
-    - [未着手] コード作成
-    - [未着手] 簡易テスト
+    - [完了] コード作成
+    - [完了] 簡易テスト
+
+実装中
+
 - ID: I-02 TITLE: オブジェクトと操作
   - PLAN < I-01
     - [完了] SPEC詳細
     - [完了] DESIGN詳細
-  - IMPLEMENT < (I-01)
+  - IMPLEMENT < I-01
     - [未着手] コード作成
     - [未着手] 簡易テスト
 - ID: I-03 TITLE: 戦闘処理
